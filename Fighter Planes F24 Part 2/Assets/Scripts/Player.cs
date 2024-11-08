@@ -15,6 +15,10 @@ public class Player : MonoBehaviour
     public GameObject explosion;
     public GameObject bullet;
     private int lives;
+    private int coins;
+    public GameManager gm;
+
+   
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +27,7 @@ public class Player : MonoBehaviour
         horizontalScreenLimit = 11.5f;
         verticalScreenLimit = 7.5f;
         lives = 3;
+        coins = 0;
     }
 
     // Update is called once per frame
@@ -66,4 +71,13 @@ public class Player : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Coin"))
+        {
+            gm.CoinCount++;
+        }
+    }
+
 }
+
