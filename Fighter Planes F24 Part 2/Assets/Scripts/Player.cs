@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using TMPro;
 
 public class Player : MonoBehaviour
 {
@@ -16,6 +17,8 @@ public class Player : MonoBehaviour
     public GameObject bullet;
     private int lives;
 
+    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +26,7 @@ public class Player : MonoBehaviour
         horizontalScreenLimit = 11.5f;
         verticalScreenLimit = 7.5f;
         lives = 3;
+        GameObject.Find("GameManager").GetComponent<GameManager>().livesText.text = "Lives: " + lives;
     }
 
     // Update is called once per frame
@@ -60,6 +64,7 @@ public class Player : MonoBehaviour
         //lives = lives - 1;
         //lives -= 1;
         lives--;
+        GameObject.Find("GameManager").GetComponent<GameManager>().livesText.text = "Lives: " + lives;
         if (lives == 0)
         {
             Instantiate(explosion, transform.position, Quaternion.identity);
